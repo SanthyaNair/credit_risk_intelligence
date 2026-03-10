@@ -1,0 +1,20 @@
+# Data (never commit raw Kaggle data)
+data/raw/
+data/processed/
+*.csv
+*.zip
+
+# Models (large binaries)
+models/*.pkl
+
+# Python
+__pycache__/
+*.pyc
+venv/
+.env
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Kaggle API key
+kaggle.json
