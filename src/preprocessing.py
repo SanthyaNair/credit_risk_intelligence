@@ -6,12 +6,13 @@ def load_data(path: str) -> pd.DataFrame:
     return pd.read_csv(path)
 
 def handle_missing_values(df: pd.DataFrame) -> pd.DataFrame:
-    # Fill numeric with median, categorical with mode
     num_cols = df.select_dtypes(include=[np.number]).columns
     cat_cols = df.select_dtypes(include=['object']).columns
-    
     df[num_cols] = df[num_cols].fillna(df[num_cols].median())
-    df[cat_cols] = df[cat_cols].fillna(df[cat_cols].mode().iloc[0])
+    if len(cat_cols) > 0:
+        mode_vals = df[cat_cols].mode()
+        if not mode_vals.empty:
+            df[cat_cols] = df[cat_cols].fillna(mode_vals.iloc[0])
     return df
 
 def encode_categoricals(df: pd.DataFrame) -> pd.DataFrame:
@@ -21,7 +22,6 @@ def encode_categoricals(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 def engineer_features(df: pd.DataFrame) -> pd.DataFrame:
-    # Credit utilization ratio
     df['CREDIT_INCOME_RATIO'] = df['AMT_CREDIT'] / (df['AMT_INCOME_TOTAL'] + 1)
     df['ANNUITY_INCOME_RATIO'] = df['AMT_ANNUITY'] / (df['AMT_INCOME_TOTAL'] + 1)
     df['CREDIT_TERM'] = df['AMT_ANNUITY'] / (df['AMT_CREDIT'] + 1)

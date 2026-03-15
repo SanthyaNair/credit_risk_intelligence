@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:
+  credit-risk-app:
+    build: .
+    container_name: credit_risk_intelligence
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data
+      - ./models:/app/models
+      - ./outputs:/app/outputs
+    environment:
+      - PYTHONPATH=/app

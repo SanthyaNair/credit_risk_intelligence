@@ -1,20 +1,38 @@
-# Data (never commit raw Kaggle data)
-data/raw/
-data/processed/
-*.csv
-*.zip
+# Virtual environment
+venv/
+env/
 
-# Models (large binaries)
-models/*.pkl
-
-# Python
+# Python cache
 __pycache__/
 *.pyc
-venv/
-.env
+*.pyo
+
+# Data files (too large for GitHub)
+data/raw/*.csv
+data/raw/*.zip
+data/preprocessed/*.csv
+
+# Model binaries (too large)
+models/*.pkl
+models/*.joblib
+
+# Outputs (generated files)
+outputs/plots/*.png
+outputs/reports/*.txt
+outputs/reports/*.json
+outputs/*.log
 
 # Jupyter
 .ipynb_checkpoints/
 
-# Kaggle API key
-kaggle.json
+# Environment variables
+.env
+*.env
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

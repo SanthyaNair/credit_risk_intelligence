@@ -7,7 +7,7 @@ from sklearn.model_selection import train_test_split, StratifiedKFold
 from sklearn.metrics import roc_auc_score
 from src.preprocessing import preprocess_pipeline
 
-def load_config(path="config.yaml"):
+def load_config(path="config/config.yaml"):
     with open(path) as f:
         return yaml.safe_load(f)
 
@@ -37,7 +37,6 @@ def train_model():
         eval_metric=cfg['model']['eval_metric'],
         early_stopping_rounds=cfg['model']['early_stopping_rounds'],
         random_state=cfg['model']['random_state'],
-        use_label_encoder=False
     )
     
     model.fit(
